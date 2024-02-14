@@ -110,6 +110,7 @@ const question = ref('');
 const passage = ref('');
 
 onMounted(async () => {
+  tf.setBackend("webgl")
   try {
     model = await qna.load();
     model_loading.value = false;
