@@ -68,8 +68,8 @@ table {
   width: 100%;
   border-collapse: separate;
   overflow: hidden;
-  margin-top: 10px;
-  border-radius: 24px;
+  margin-top: 20px;
+  border-radius: 10px;
   border-spacing: 0;
 }
 
