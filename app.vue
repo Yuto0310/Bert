@@ -4,22 +4,47 @@
     <Loading />
     <h1 v-if="!model_successflly_loaded">Failed to load model</h1>
   </div>
-    <div class="data">
-      <div class="passage">
-        <h1>Passage</h1>
-        <textarea class="passage" type="text" placeholder="参考にする文章を入れてください" v-model="passage" />
-      </div>
-      <div class="question">
-        <h1>Question</h1>
-        <textarea class="question"  type="text" placeholder="質問を入れてください" v-model="question" />
-      </div>
-    </div>
-    <div class="result">
-      <h1>Result: {{ answer }}</h1>
-    </div>
+  <table border="1">
+    <tr>
+      <th class="top-left">
+        <div class="passage">Passage</div>
+      </th>
+      <th class="top-right">
+        <div class="question">Question</div>
+      </th>
+    </tr>
+    <tr>
+      <td class="bottom-left">
+        <textarea v-model="passage" rows="10" cols="50"></textarea>
+      </td>
+      <td class="bottom-right">
+        <textarea v-model="question" rows="10" cols="50"></textarea>
+      </td>
+    </tr>
+  </table>
+  <div class="result">
+    <h1>Result: {{ answer }}</h1>
+  </div>
 </template>
 
 <style>
+body {
+  background-color: #FFFFFF;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* 画面に対して固定位置 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* 背景をわずかに透明にして、他の要素を覆う */
+  z-index: 1000; /* 他の要素よりも前面に表示 */
+}
+
 Loading {
   display: block;
   margin-left: auto;
@@ -37,65 +62,52 @@ Loading {
 .green {
   color: #118335;
 }
-.title {
-  background-color: #FFFFFF;
-  margin: 0;
-  text-align: center;
-  font-size: 48px;
-}
 
-body {
-  background-color: #FFFFFF;
-}
-
-.data {
-  display: flex;
-  align-items: center;
-  margin: 20px;
-  left: auto;
-  right: auto;
-}
-
-.data div {
-  margin: 20px;
-}
-.question, .passage {
+table {
+  height: 480px;
   width: 100%;
+  border-collapse: separate;
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: 24px;
+  border-spacing: 0;
 }
 
-h1 {
-  text-align: center;
+.top-left {
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+.top-right {
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+.bottom-left {
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+.bottom-right {
+  border-bottom: none;
+  border-right: none;
 }
 
 textarea {
-
-  width: 80%;
-  height: 300px;
-  margin: 10px;
-  padding: 10px;
-  resize: none;
-  border-radius: 10px;
-}
-result {
-  width: 80%;
-  height: 300px;
-  margin: 10px;
-  padding: 10px;
-  resize: none;
-  border-radius: 10px;
-}
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed; /* 画面に対して固定位置 */
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* 背景をわずかに透明にして、他の要素を覆う */
-  z-index: 1000; /* 他の要素よりも前面に表示 */
+  padding: 12px 20px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  border: none;
+  resize: none;
 }
+
 </style>
 
 <script lang="ts" setup>
